@@ -1,0 +1,618 @@
+<!doctype html>
+<html lang="ro">
+ <head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Moș Crăciun - Adu magia Crăciunului la tine acasă</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&amp;family=Open+Sans:wght@300;400;600&amp;display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+        body {
+            box-sizing: border-box;
+        }
+        
+        .hero-bg {
+            background: linear-gradient(135deg, #8b0000 0%, #a00000 100%);
+        }
+        
+        .snowflake {
+            position: absolute;
+            color: rgba(255, 255, 255, 0.3);
+            user-select: none;
+            pointer-events: none;
+            animation: snowfall 10s linear infinite;
+        }
+        
+        @keyframes snowfall {
+            0% { transform: translateY(-100vh) rotate(0deg); }
+            100% { transform: translateY(100vh) rotate(360deg); }
+        }
+        
+        .service-card {
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+        
+        .service-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(214, 40, 40, 0.2);
+        }
+        
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+        }
+        
+        .modal-content {
+            background-color: white;
+            margin: 5% auto;
+            padding: 20px;
+            border-radius: 15px;
+            width: 90%;
+            max-width: 500px;
+            position: relative;
+        }
+        
+        .close {
+            color: #aaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+        
+        .close:hover {
+            color: #d62828;
+        }
+        
+        .review-slider {
+            overflow-x: auto;
+            overflow-y: hidden;
+        }
+        
+        .review-track {
+            display: flex;
+            transition: transform 0.5s ease;
+        }
+        
+        .faq-item {
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .faq-answer {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease;
+        }
+        
+        .faq-answer.active {
+            max-height: 200px;
+        }
+
+        .calendar-day {
+            min-height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+    </style>
+  <style>@view-transition { navigation: auto; }</style>
+  <script src="/_sdk/data_sdk.js" type="text/javascript"></script>
+  <script src="/_sdk/element_sdk.js" type="text/javascript"></script>
+ </head>
+ <body class="font-sans"><!-- Snowflakes -->
+  <div class="snowflake" style="left: 10%; animation-delay: 0s;">
+   ❄
+  </div>
+  <div class="snowflake" style="left: 20%; animation-delay: 2s;">
+   ❅
+  </div>
+  <div class="snowflake" style="left: 30%; animation-delay: 4s;">
+   ❄
+  </div>
+  <div class="snowflake" style="left: 40%; animation-delay: 6s;">
+   ❅
+  </div>
+  <div class="snowflake" style="left: 50%; animation-delay: 8s;">
+   ❄
+  </div>
+  <div class="snowflake" style="left: 60%; animation-delay: 1s;">
+   ❅
+  </div>
+  <div class="snowflake" style="left: 70%; animation-delay: 3s;">
+   ❄
+  </div>
+  <div class="snowflake" style="left: 80%; animation-delay: 5s;">
+   ❅
+  </div>
+  <div class="snowflake" style="left: 90%; animation-delay: 7s;">
+   ❄
+  </div>  <!-- Header -->
+  <header class="bg-white shadow-md sticky top-0 z-50">
+    <div class="container mx-auto px-4 max-w-5xl py-3 flex flex-col gap-3 md:flex-row md:items-center md:justify-between">
+      <!-- Logo -->
+      <div class="flex items-center gap-2">
+        <span class="text-xl md:text-2xl">🎅</span>
+        <h1 class="text-xl md:text-2xl font-bold text-gray-800" style="font-family: 'Poppins', sans-serif;">
+          Moș Crăciun
+        </h1>
+      </div>
+
+      <!-- Contact + Rezervă -->
+      <div class="flex items-center justify-end gap-2">
+        <a href="#contact-section"
+           class="inline-flex items-center gap-1 text-xs md:text-base text-gray-700 hover:text-red-600 px-2 py-1 md:px-4 md:py-2 rounded-full md:border md:border-red-600">
+          <span class="text-base md:text-xl">📞</span><span class="hidden md:inline">Contact</span>
+        </a>
+        <a href="#calendar-section"
+           class="inline-flex items-center gap-1 text-xs md:text-base bg-red-600 text-white px-3 py-1 md:px-5 md:py-2 rounded-full hover:bg-red-700 transition">
+          <span class="text-base md:text-xl">📅</span><span class="hidden md:inline">Rezervă</span>
+        </a>
+      </div>
+    </div>
+  </header><!-- Hero Section -->
+  <section class="hero-bg text-white py-12 md:py-20 relative overflow-hidden">
+   <div class="container mx-auto px-4 max-w-5xl flex flex-col md:flex-row items-center justify-between gap-8">
+    <div class="w-full md:w-1/2 md:pr-8 mb-8 md:mb-0">
+     <h2 class="text-2xl sm:text-3xl md:text-5xl font-bold mb-4 md:mb-6" style="font-family: 'Poppins', sans-serif;">Adu magia Crăciunului la tine acasă</h2>
+     <p class="text-base sm:text-lg md:text-xl mb-6 md:mb-8 opacity-90" style="font-family: 'Open Sans', sans-serif;">Creează amintiri de neuitat cu cel mai autentic Moș Crăciun din România. Experiență magică garantată pentru copii și adulți.</p><a href="#calendar-section" class="inline-flex items-center gap-2 bg-white text-red-800 px-4 py-2.5 md:px-6 md:py-3 rounded-full text-sm sm:text-base md:text-lg font-semibold hover:bg-gray-100 transition transform hover:scale-105">🎁 Rezervă vizita lui Moș Crăciun</a>
+    </div>
+    <div class="w-full md:w-1/2 flex justify-center">
+     <div class="w-48 h-48 sm:w-64 sm:h-64 md:w-80 md:h-80 bg-white bg-opacity-20 rounded-full flex items-center justify-center"><span class="text-6xl sm:text-7xl md:text-9xl">🎅</span>
+     </div>
+    </div>
+   </div>
+  </section><!-- Services Section -->
+  <section class="py-16 bg-gray-50">
+   <div class="container mx-auto px-4 max-w-5xl">
+    <h3 class="text-2xl sm:text-3xl md:text-4xl font-bold text-center mb-8 md:mb-12 text-gray-800" style="font-family: 'Poppins', sans-serif;">Serviciile noastre magice</h3>
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+     <div class="service-card bg-white p-4 sm:p-6 rounded-xl shadow-lg" onclick="openModal('modal1')">
+      <div class="text-3xl sm:text-4xl mb-3 sm:mb-4 text-center">
+       🏠
+      </div>
+      <h4 class="text-lg sm:text-xl font-semibold mb-1 sm:mb-2 text-center">Vizită la domiciliu</h4>
+      <p class="text-gray-600 text-center">Moș Crăciun vine direct la tine acasă</p>
+     </div>
+     <div class="service-card bg-white p-4 sm:p-6 rounded-xl shadow-lg" onclick="openModal('modal2')">
+      <div class="text-3xl sm:text-4xl mb-3 sm:mb-4 text-center">
+       🏫
+      </div>
+      <h4 class="text-lg sm:text-xl font-semibold mb-1 sm:mb-2 text-center">Moș Crăciun la grădinițe</h4>
+      <p class="text-gray-600 text-center">Spectacol magic pentru cei mici</p>
+     </div>
+    </div>
+   </div>
+  </section><!-- Benefits Section -->
+  <section class="py-16 bg-white">
+   <div class="container mx-auto px-4 max-w-5xl">
+    <h3 class="text-2xl sm:text-3xl md:text-4xl font-bold text-center mb-8 md:mb-12 text-gray-800" style="font-family: 'Poppins', sans-serif;">De ce să alegi Moș Crăciunul nostru?</h3>
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+     <div class="text-center">
+      <div class="text-3xl sm:text-4xl md:text-5xl mb-3 sm:mb-4">
+       🎁
+      </div>
+      <h4 class="text-sm sm:text-base md:text-lg font-semibold mb-1 sm:mb-2">Costum autentic</h4>
+      <p class="text-gray-600">Personaj carismatic și costum de calitate superioară</p>
+     </div>
+     <div class="text-center">
+      <div class="text-3xl sm:text-4xl md:text-5xl mb-3 sm:mb-4">
+       🌟
+      </div>
+      <h4 class="text-sm sm:text-base md:text-lg font-semibold mb-1 sm:mb-2">Experiență vastă</h4>
+      <p class="text-gray-600">Peste 10 ani de experiență cu copii de toate vârstele</p>
+     </div>
+     <div class="text-center">
+      <div class="text-3xl sm:text-4xl md:text-5xl mb-3 sm:mb-4">
+       🎅
+      </div>
+      <h4 class="text-sm sm:text-base md:text-lg font-semibold mb-1 sm:mb-2">Momente magice</h4>
+      <p class="text-gray-600">Povestiri captivante și fotografii memorabile</p>
+     </div>
+     <div class="text-center">
+      <div class="text-3xl sm:text-4xl md:text-5xl mb-3 sm:mb-4">
+       💫
+      </div>
+      <h4 class="text-sm sm:text-base md:text-lg font-semibold mb-1 sm:mb-2">Flexibilitate totală</h4>
+      <p class="text-gray-600">Adaptabil pentru orice tip de eveniment</p>
+     </div>
+    </div>
+   </div>
+  </section><!-- About Section -->
+  <section class="py-12 md:py-16" style="background: linear-gradient(135deg, #8b0000 0%, #ffffff 100%);">
+   <div class="container mx-auto px-4 max-w-5xl flex flex-col md:flex-row items-center">
+    <div class="w-full md:w-1/2 md:pr-8 mb-8 md:mb-0">
+     <div class="w-80 h-80 bg-white bg-opacity-20 rounded-full flex items-center justify-center mx-auto"><span class="text-6xl sm:text-7xl md:text-9xl">🎅</span>
+     </div>
+    </div>
+    <div class="w-full md:w-1/2 text-white text-center md:text-left">
+     <h3 class="text-4xl font-bold mb-6" style="font-family: 'Poppins', sans-serif;">Despre Moș Crăciun</h3>
+     <p class="text-lg mb-6 leading-relaxed" style="font-family: 'Open Sans', sans-serif;">Cu peste un deceniu de experiență în aducerea bucuriei de Crăciun în casele românilor, sunt dedicat să creez momente magice și amintiri de neuitat pentru copii și familii. Fiecare vizită este o aventură unică, plină de povești captivante, râsete și surprize.</p>
+     <p class="text-base sm:text-lg leading-relaxed" style="font-family: 'Open Sans', sans-serif;">Cred că spiritul Crăciunului trăiește în fiecare zâmbet de copil și în fiecare moment de fericire împărtășit în familie. Să aducem împreună magia Crăciunului la tine acasă!</p>
+    </div>
+   </div>
+  </section><!-- Reviews Section -->
+  <section class="py-16 bg-gray-50">
+   <div class="container mx-auto px-4 max-w-5xl">
+    <h3 class="text-2xl sm:text-3xl md:text-4xl font-bold text-center mb-8 md:mb-12 text-gray-800" style="font-family: 'Poppins', sans-serif;">Ce spun părinții și organizatorii</h3>
+    <div class="review-slider">
+     <div class="review-track" id="reviewTrack">
+      <div class="bg-white p-4 sm:p-6 rounded-xl shadow-lg mx-2 sm:mx-4 min-w-64 sm:min-w-72 md:min-w-80">
+       <div class="flex mb-4"><span class="text-red-500">★★★★★</span>
+       </div>
+       <p class="text-gray-600 text-sm sm:text-base mb-3 sm:mb-4">"O experiență absolut magică! Copiii au fost încântați și nu se mai satură să povestească despre vizita lui Moș Crăciun."</p>
+       <p class="font-semibold">- Maria Popescu</p>
+      </div>
+      <div class="bg-white p-4 sm:p-6 rounded-xl shadow-lg mx-2 sm:mx-4 min-w-64 sm:min-w-72 md:min-w-80">
+       <div class="flex mb-4"><span class="text-red-500">★★★★★</span>
+       </div>
+       <p class="text-gray-600 text-sm sm:text-base mb-3 sm:mb-4">"Profesionalism de top! A reușit să capteze atenția a 30 de copii timp de o oră întreagă. Recomand cu încredere!"</p>
+       <p class="font-semibold">- Grădinița Floarea Soarelui</p>
+      </div>
+      <div class="bg-white p-4 sm:p-6 rounded-xl shadow-lg mx-2 sm:mx-4 min-w-64 sm:min-w-72 md:min-w-80">
+       <div class="flex mb-4"><span class="text-red-500">★★★★★</span>
+       </div>
+       <p class="text-gray-600 text-sm sm:text-base mb-3 sm:mb-4">"Chiar și adulții au fost impresionați! Un Moș Crăciun autentic care știe să creeze atmosfera perfectă."</p>
+       <p class="font-semibold">- Alexandru Ionescu</p>
+      </div>
+     </div>
+    </div>
+   </div>
+  </section><!-- FAQ Section -->
+  <section class="py-16 bg-white">
+   <div class="container mx-auto px-4 max-w-5xl">
+    <h3 class="text-2xl sm:text-3xl md:text-4xl font-bold text-center mb-8 md:mb-12 text-gray-800" style="font-family: 'Poppins', sans-serif;">Întrebări frecvente</h3>
+    <div class="max-w-3xl mx-auto space-y-4">
+     <div class="faq-item border border-gray-200 rounded-lg p-4" onclick="toggleFAQ(this)">
+      <div class="flex justify-between items-center">
+       <h4 class="text-base md:text-lg font-semibold">Cât durează o vizită?</h4><span class="text-2xl">+</span>
+      </div>
+      <div class="faq-answer mt-4">
+       <p class="text-gray-600">O vizită standard durează între 30-45 de minute, dar poate fi adaptată în funcție de nevoile dumneavoastră și numărul de copii.</p>
+      </div>
+     </div>
+     <div class="faq-item border border-gray-200 rounded-lg p-4" onclick="toggleFAQ(this)">
+      <div class="flex justify-between items-center">
+       <h4 class="text-base md:text-lg font-semibold">Ce conține pachetul standard?</h4><span class="text-2xl">+</span>
+      </div>
+      <div class="faq-answer mt-4">
+       <p class="text-gray-600">Pachetul include: costum complet de Moș Crăciun, sac cu daruri, povești și poezii personalizate, sesiune foto și interacțiune cu copiii.</p>
+      </div>
+     </div>
+     <div class="faq-item border border-gray-200 rounded-lg p-4" onclick="toggleFAQ(this)">
+      <div class="flex justify-between items-center">
+       <h4 class="text-base md:text-lg font-semibold">Pot personaliza mesajul lui Moș Crăciun?</h4><span class="text-2xl">+</span>
+      </div>
+      <div class="faq-answer mt-4">
+       <p class="text-gray-600">Absolut! Puteți să-mi oferiți informații despre copii (nume, vârstă, comportament) pentru a personaliza complet experiența.</p>
+      </div>
+     </div>
+     <div class="faq-item border border-gray-200 rounded-lg p-4" onclick="toggleFAQ(this)">
+      <div class="flex justify-between items-center">
+       <h4 class="text-base md:text-lg font-semibold">Cum pot face o rezervare?</h4><span class="text-2xl">+</span>
+      </div>
+      <div class="faq-answer mt-4">
+       <p class="text-gray-600">Puteți suna la numărul de telefon din footer, trimite un email sau completa formularul de contact. Răspund în maximum 24 de ore.</p>
+      </div>
+     </div>
+    </div>
+   </div>
+  </section><!-- Booking Calendar Section -->
+  <section id="calendar-section" class="py-12 md:py-16 bg-red-50">
+   <div class="container mx-auto px-4 max-w-5xl">
+    <h3 class="text-2xl sm:text-3xl md:text-4xl font-bold text-center mb-8 md:mb-12 text-gray-800" style="font-family: 'Poppins', sans-serif;">Rezervă vizita lui Moș Crăciun</h3>
+    <div class="max-w-4xl mx-auto bg-white rounded-xl shadow-lg p-5 sm:p-6 md:p-8">
+     <div class="grid grid-cols-1 lg:grid-cols-2 gap-8"><!-- Calendar -->
+      <div>
+       <h4 class="text-base sm:text-lg md:text-xl font-semibold mb-3 sm:mb-4 text-gray-800">Alege data</h4>
+       <div class="calendar-container">
+        <div class="calendar-header flex justify-between items-center mb-4"><button onclick="previousMonth()" class="text-red-600 hover:text-red-800 text-xl font-bold">&lt;</button>
+         <h5 class="text-base md:text-lg font-semibold" id="currentMonth"></h5><button onclick="nextMonth()" class="text-red-600 hover:text-red-800 text-xl font-bold">&gt;</button>
+        </div>
+        <div class="calendar-grid grid grid-cols-7 gap-1 mb-4">
+         <div class="text-center text-sm font-semibold text-gray-600 p-2">
+          Lu
+         </div>
+         <div class="text-center text-sm font-semibold text-gray-600 p-2">
+          Ma
+         </div>
+         <div class="text-center text-sm font-semibold text-gray-600 p-2">
+          Mi
+         </div>
+         <div class="text-center text-sm font-semibold text-gray-600 p-2">
+          Jo
+         </div>
+         <div class="text-center text-sm font-semibold text-gray-600 p-2">
+          Vi
+         </div>
+         <div class="text-center text-sm font-semibold text-gray-600 p-2">
+          Sâ
+         </div>
+         <div class="text-center text-sm font-semibold text-gray-600 p-2">
+          Du
+         </div>
+        </div>
+        <div class="calendar-days grid grid-cols-7 gap-1" id="calendarDays"></div>
+       </div><!-- Time Selection -->
+       <div class="mt-6">
+        <h4 class="text-base sm:text-lg md:text-xl font-semibold mb-3 sm:mb-4 text-gray-800">Alege ora</h4>
+        <div class="grid grid-cols-3 gap-2" id="timeSlots"><button class="time-slot p-2 border border-gray-300 rounded-lg hover:bg-red-100 hover:border-red-300 transition" onclick="selectTime(this, '10:00')">10:00</button> <button class="time-slot p-2 border border-gray-300 rounded-lg hover:bg-red-100 hover:border-red-300 transition" onclick="selectTime(this, '11:00')">11:00</button> <button class="time-slot p-2 border border-gray-300 rounded-lg hover:bg-red-100 hover:border-red-300 transition" onclick="selectTime(this, '14:00')">14:00</button> <button class="time-slot p-2 border border-gray-300 rounded-lg hover:bg-red-100 hover:border-red-300 transition" onclick="selectTime(this, '15:00')">15:00</button> <button class="time-slot p-2 border border-gray-300 rounded-lg hover:bg-red-100 hover:border-red-300 transition" onclick="selectTime(this, '16:00')">16:00</button> <button class="time-slot p-2 border border-gray-300 rounded-lg hover:bg-red-100 hover:border-red-300 transition" onclick="selectTime(this, '17:00')">17:00</button>
+        </div>
+       </div>
+      </div><!-- Booking Form -->
+      <div>
+       <h4 class="text-base sm:text-lg md:text-xl font-semibold mb-3 sm:mb-4 text-gray-800">Detaliile rezervării</h4>
+       <form id="bookingForm" onsubmit="submitBooking(event)" class="space-y-4">
+        <div><label for="selectedDate" class="block text-sm font-medium text-gray-700 mb-1">Data selectată</label> <input type="text" id="selectedDate" readonly class="w-full p-3 border border-gray-300 rounded-lg bg-gray-50" placeholder="Selectează o dată din calendar">
+        </div>
+        <div><label for="selectedTime" class="block text-sm font-medium text-gray-700 mb-1">Ora selectată</label> <input type="text" id="selectedTime" readonly class="w-full p-3 border border-gray-300 rounded-lg bg-gray-50" placeholder="Selectează o oră">
+        </div>
+        <div><label for="clientName" class="block text-sm font-medium text-gray-700 mb-1">Numele complet</label> <input type="text" id="clientName" required class="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:border-red-500" placeholder="Introduceți numele complet">
+        </div>
+        <div><label for="clientPhone" class="block text-sm font-medium text-gray-700 mb-1">Numărul de telefon</label> <input type="tel" id="clientPhone" required class="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:border-red-500" placeholder="07XX XXX XXX">
+        </div>
+        <div><label for="serviceType" class="block text-sm font-medium text-gray-700 mb-1">Tipul serviciului</label> <select id="serviceType" required class="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:border-red-500"> <option value="">Selectează serviciul</option> <option value="domiciliu">Vizită la domiciliu</option> <option value="gradinita">Moș Crăciun la grădinițe</option> </select>
+        </div>
+        <div><label for="specialRequests" class="block text-sm font-medium text-gray-700 mb-1">Cerințe speciale (opțional)</label> <textarea id="specialRequests" rows="3" class="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:border-red-500" placeholder="Detalii despre copii, adresă, cerințe speciale..."></textarea>
+        </div><button type="submit" class="w-full bg-red-600 text-white py-3 px-6 rounded-lg font-semibold hover:bg-red-700 transition transform hover:scale-105"> 🎅 Confirmă rezervarea </button>
+       </form>
+       <div id="bookingSuccess" class="hidden mt-4 p-4 bg-green-100 border border-green-300 rounded-lg">
+        <p class="text-green-800 font-semibold">✅ Rezervarea a fost trimisă cu succes!</p>
+        <p class="text-green-700 text-sm mt-1">Vă vom contacta în maximum 24 de ore pentru confirmare.</p>
+       </div>
+      </div>
+     </div>
+    </div>
+   </div>
+  </section><!-- Footer -->
+  <footer id="contact-section" class="bg-gray-800 text-white py-12">
+   <div class="container mx-auto px-4 max-w-5xl">
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+     <div>
+      <div class="flex items-center space-x-2 mb-4"><span class="text-2xl">🎅</span>
+       <h4 class="text-lg sm:text-xl font-bold">Moș Crăciun</h4>
+      </div>
+      <p class="text-gray-300">Aducând magia Crăciunului în fiecare casă din România.</p>
+     </div>
+     <div>
+      <h4 class="text-base sm:text-lg font-semibold mb-3 sm:mb-4">Contact</h4>
+      <p class="text-gray-300 mb-1 sm:mb-2 text-sm sm:text-base">📞 0722 123 456</p>
+      <p class="text-gray-300 mb-1 sm:mb-2 text-sm sm:text-base">✉️ contact@moscrăciun.ro</p>
+      <p class="text-gray-300">📍 București, România</p>
+     </div>
+     <div>
+      <h4 class="text-base sm:text-lg font-semibold mb-3 sm:mb-4">Urmărește-ne</h4>
+      <div class="flex space-x-4"><a href="#" class="text-gray-300 hover:text-red-400 transition">Facebook</a> <a href="#" class="text-gray-300 hover:text-red-400 transition">Instagram</a> <a href="#" class="text-gray-300 hover:text-red-400 transition">TikTok</a>
+      </div>
+     </div>
+    </div>
+    <div class="border-t border-gray-700 mt-8 pt-8 text-center">
+     <p class="text-gray-300">🎄 Crăciun Fericit din partea echipei Moș Crăciun! 🎄</p>
+    </div>
+   </div>
+  </footer><!-- Modals -->
+  <div id="modal1" class="modal">
+   <div class="modal-content"><span class="close" onclick="closeModal('modal1')">×</span>
+    <h3 class="text-2xl font-bold mb-4 text-red-600">Vizită la domiciliu</h3>
+    <p class="mb-4"><strong>Durată:</strong> 30-45 minute</p>
+    <p class="mb-4"><strong>Preț:</strong> 250 RON</p>
+    <p class="mb-4"><strong>Include:</strong></p>
+    <ul class="list-disc list-inside mb-4 text-gray-600">
+     <li>Costum complet de Moș Crăciun</li>
+     <li>Daruri personalizate (furnizate de client)</li>
+     <li>Poezii și povești interactive</li>
+     <li>Sesiune foto nelimitată</li>
+     <li>Deplasare în București</li>
+    </ul><button class="bg-red-600 text-white px-6 py-2 rounded-full hover:bg-red-700 transition" onclick="goToCalendar('modal1')"> Rezervă acum </button>
+   </div>
+  </div>
+  <div id="modal2" class="modal">
+   <div class="modal-content"><span class="close" onclick="closeModal('modal2')">×</span>
+    <h3 class="text-2xl font-bold mb-4 text-red-600">Moș Crăciun la grădinițe</h3>
+    <p class="mb-4"><strong>Durată:</strong> 45-60 minute</p>
+    <p class="mb-4"><strong>Preț:</strong> 400 RON</p>
+    <p class="mb-4"><strong>Include:</strong></p>
+    <ul class="list-disc list-inside mb-4 text-gray-600">
+     <li>Spectacol interactiv pentru grup</li>
+     <li>Colinde și jocuri de Crăciun</li>
+     <li>Distribuirea darurilor</li>
+     <li>Fotografii cu fiecare copil</li>
+     <li>Activități creative</li>
+    </ul><button class="bg-red-600 text-white px-6 py-2 rounded-full hover:bg-red-700 transition" onclick="goToCalendar('modal2')"> Rezervă acum </button>
+   </div>
+  </div>
+  <script>
+        function openModal(modalId) {
+            document.getElementById(modalId).style.display = 'flex';
+        }
+
+        function closeModal(modalId) {
+            document.getElementById(modalId).style.display = 'none';
+        }
+
+        function goToCalendar(modalId) {
+            // Închide modalul
+            closeModal(modalId);
+            // Scroll lin către calendar
+            const calendar = document.getElementById('calendar-section');
+            if (calendar) {
+                calendar.scrollIntoView({ behavior: 'smooth' });
+            }
+        }
+
+        function toggleFAQ(element) {
+            const answer = element.querySelector('.faq-answer');
+            const icon = element.querySelector('span');
+            
+            if (answer.classList.contains('active')) {
+                answer.classList.remove('active');
+                icon.textContent = '+';
+            } else {
+                // Close all other FAQs
+                document.querySelectorAll('.faq-answer').forEach(a => a.classList.remove('active'));
+                document.querySelectorAll('.faq-item span').forEach(s => s.textContent = '+');
+                
+                answer.classList.add('active');
+                icon.textContent = '−';
+            }
+        }
+
+        // Close modal when clicking outside
+        window.onclick = function(event) {
+            if (event.target.classList.contains('modal')) {
+                event.target.style.display = 'none';
+            }
+        }
+
+        // Calendar functionality
+        // Calendar functionality
+        let currentDate = new Date();
+        let selectedDate = null;
+        let selectedTime = null;
+
+        const months = [
+            'Ianuarie', 'Februarie', 'Martie', 'Aprilie', 'Mai', 'Iunie',
+            'Iulie', 'August', 'Septembrie', 'Octombrie', 'Noiembrie', 'Decembrie'
+        ];
+
+        function initCalendar() {
+            updateCalendar();
+        }
+
+        function updateCalendar() {
+            const monthYear = document.getElementById('currentMonth');
+            monthYear.textContent = `${months[currentDate.getMonth()]} ${currentDate.getFullYear()}`;
+
+            const calendarDays = document.getElementById('calendarDays');
+            calendarDays.innerHTML = '';
+
+            const firstDay = new Date(currentDate.getFullYear(), currentDate.getMonth(), 1);
+            const lastDay = new Date(currentDate.getFullYear(), currentDate.getMonth() + 1, 0);
+            const startDate = new Date(firstDay);
+            startDate.setDate(startDate.getDate() - (firstDay.getDay() === 0 ? 6 : firstDay.getDay() - 1));
+
+            for (let i = 0; i < 42; i++) {
+                const date = new Date(startDate);
+                date.setDate(startDate.getDate() + i);
+
+                const dayElement = document.createElement('div');
+                dayElement.className = 'calendar-day text-center p-2 cursor-pointer rounded-lg transition';
+                dayElement.textContent = date.getDate();
+
+                const today = new Date();
+                const isCurrentMonth = date.getMonth() === currentDate.getMonth();
+                const isPastDate = date < today.setHours(0, 0, 0, 0);
+
+                if (!isCurrentMonth) {
+                    dayElement.className += ' text-gray-300';
+                } else if (isPastDate) {
+                    dayElement.className += ' text-gray-400 cursor-not-allowed';
+                } else {
+                    dayElement.className += ' text-gray-800 hover:bg-red-100 hover:text-red-600';
+                    dayElement.onclick = () => selectDate(date, dayElement);
+                }
+
+                calendarDays.appendChild(dayElement);
+            }
+        }
+
+        function selectDate(date, element) {
+            // Remove previous selection
+            document.querySelectorAll('.calendar-day').forEach(day => {
+                day.classList.remove('bg-red-600', 'text-white');
+            });
+
+            // Add selection to clicked date
+            element.classList.add('bg-red-600', 'text-white');
+            selectedDate = date;
+
+            // Update form
+            const dateStr = `${date.getDate().toString().padStart(2, '0')}.${(date.getMonth() + 1).toString().padStart(2, '0')}.${date.getFullYear()}`;
+            document.getElementById('selectedDate').value = dateStr;
+        }
+
+        function selectTime(element, time) {
+            // Remove previous selection
+            document.querySelectorAll('.time-slot').forEach(slot => {
+                slot.classList.remove('bg-red-600', 'text-white');
+                slot.classList.add('border-gray-300');
+            });
+
+            // Add selection to clicked time
+            element.classList.add('bg-red-600', 'text-white');
+            element.classList.remove('border-gray-300');
+            selectedTime = time;
+
+            // Update form
+            document.getElementById('selectedTime').value = time;
+        }
+
+        function previousMonth() {
+            currentDate.setMonth(currentDate.getMonth() - 1);
+            updateCalendar();
+        }
+
+        function nextMonth() {
+            currentDate.setMonth(currentDate.getMonth() + 1);
+            updateCalendar();
+        }
+
+        function submitBooking(event) {
+            event.preventDefault();
+
+            const name = document.getElementById('clientName').value;
+            const phone = document.getElementById('clientPhone').value;
+            const service = document.getElementById('serviceType').value;
+            const requests = document.getElementById('specialRequests').value;
+
+            if (!selectedDate || !selectedTime) {
+                // Show inline message instead of alert
+                const errorDiv = document.createElement('div');
+                errorDiv.className = 'mt-4 p-4 bg-red-100 border border-red-300 rounded-lg';
+                errorDiv.innerHTML = '<p class="text-red-800 font-semibold">⚠️ Vă rugăm să selectați data și ora pentru rezervare.</p>';
+                
+                const existingError = document.querySelector('.bg-red-100');
+                if (existingError) existingError.remove();
+                
+                document.getElementById('bookingForm').appendChild(errorDiv);
+                
+                setTimeout(() => errorDiv.remove(), 3000);
+                return;
+            }
+
+            // Show success message
+            document.getElementById('bookingSuccess').classList.remove('hidden');
+            document.getElementById('bookingForm').reset();
+            
+            // Reset selections
+            document.querySelectorAll('.calendar-day').forEach(day => {
+                day.classList.remove('bg-red-600', 'text-white');
+            });
+            document.querySelectorAll('.time-slot').forEach(slot => {
+                slot.classList.remove('bg-red-600', 'text-white');
+                slot.classList.add('border-gray-300');
+            });
+            
+            selectedDate = null;
+            selectedTime = null;
+            document.getElementById('selectedDate').value = '';
+            document.getElementById('selectedTime').value = '';
+
+            // Hide success message after 5 seconds
+            setTimeout(() => {
+                document.getElementById('bookingSuccess').classList.add('hidden');
+            }, 5000);
+        }
+
+        // Initialize calendar when page loads
+        document.addEventListener('DOMContentLoaded', initCalendar);
+    </script>
+ <script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'9a1a90f4a4c5186a',t:'MTc2MzY2OTE2OS4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+</html>
