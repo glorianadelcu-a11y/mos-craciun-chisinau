@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+ <meta charset="UTF-8" />
+ <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+ <title>Moș Crăciun din Moldova</title>
+ <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&display=swap" rel="stylesheet" />
+ <script src="https://cdn.tailwindcss.com"></script>
+
+ <style>
+  body {
+   font-family: 'Open Sans', sans-serif;
+   background-color: #f9f9f9;
+   color: #2b2b2b;
+  }
+
+  .modal {
+   display: none;
+   position: fixed;
+   z-index: 1000;
+   inset: 0;
+   width: 100%;
+   height: 100%;
+   background-color: rgba(0, 0, 0, 0.5);
+   display: flex;
+   align-items: center;
+   justify-content: center;
+   padding: 1rem;
+  }
+
+  .modal-content {
+   background-color: white;
+   padding: 12px 16px 8px 16px;
+   border-radius: 15px;
+   width: 90%;
+   max-width: 420px;
+   max-height: 70vh;
+   overflow-y: auto;
+   position: relative;
+   margin: 0 auto;
+   font-size: 0.9rem;
+  }
+
+  .close {
+   position: absolute;
+   top: 10px;
+   right: 15px;
+   font-size: 24px;
+   cursor: pointer;
+  }
+
+  .review-track {
+   display: flex;
+   overflow-x: auto;
+   scroll-behavior: smooth;
+  }
+
+  .review-track::-webkit-scrollbar {
+   height: 8px;
+  }
+
+  .review-track::-webkit-scrollbar-thumb {
+   background-color: #c53030;
+   border-radius: 10px;
+  }
+
+  .review-track::-webkit-scrollbar-track {
+   background-color: #f2f2f2;
+  }
+ </style>
+</head>
+
+<body>
+
+<!-- Header -->
+<header class="bg-white shadow-md py-3 sticky top-0 z-50">
+ <div class="container mx-auto px-4 flex justify-between items-center">
+
+  <div class="flex items-center">
+   <img src="logo (4).png" alt="Mos Craciun Logo" class="h-10 w-auto md:h-12 object-contain" />
+  </div>
+
+  <nav class="hidden md:flex space-x-6 text-lg font-semibold">
+   <a href="#about" class="hover:text-red-600 transition">Despre</a>
+   <a href="#services" class="hover:text-red-600 transition">Servicii</a>
+   <a href="#contact" class="hover:text-red-600 transition">Contact</a>
+   <a href="#calendar" class="bg-red-600 text-white px-4 py-2 rounded-lg hover:bg-red-700 transition">
+    🎁 Rezervă
+   </a>
+  </nav>
+
+  <div class="md:hidden flex items-center space-x-4">
+   <a href="#contact"><span class="text-red-600 text-2xl">📞</span></a>
+   <a href="#calendar"><span class="text-2xl">📅</span></a>
+  </div>
+
+ </div>
+</header>
+
+<!-- Hero Section -->
+<section class="bg-red-600 text-white py-16 text-center">
+ <div class="container mx-auto px-4">
+
+  <h2 class="text-3xl sm:text-4xl md:text-5xl font-bold mb-4">
+   Adu magia lui Moș Crăciun la tine acasă!
+  </h2>
+
+  <p class="text-lg sm:text-xl mb-6">
+   Creează amintiri de neuitat cu cel mai autentic Moș Crăciun din Moldova. Experiență magică garantată pentru copii și adulți.
+  </p>
+
+  <a href="#calendar" class="bg-white text-red-600 font-bold px-6 py-3 rounded-lg text-lg hover:bg-gray-200 transition">
+   🎁 Rezervă vizita lui Moș Crăciun
+  </a>
+
+ </div>
+</section>
+
+<!-- About Section -->
+<section id="about" class="py-16">
+ <div class="container mx-auto px-4 max-w-5xl flex flex-col md:flex-row items-center">
+
+  <div class="md:w-1/2 mb-8 md:mb-0">
+   <img src="mos3.jpg" alt="Moș Crăciun" class="rounded-xl shadow-lg mx-auto" />
+  </div>
+
+  <div class="md:w-1/2 md:pl-12">
+
+   <p class="text-lg mb-6 leading-relaxed" style="font-family: 'Open Sans', sans-serif;">
+    Moș Crăciun din poveștile moldovenești prinde viață chiar la tine acasă! Eu sunt Ilie, Moș Crăciun din Moldova, cu suflet mare și costum tradițional, inspirat din portul popular moldovenesc, cu motive autentice și culorile sărbătorilor de iarnă de la noi.
+   </p>
+
+   <p class="text-base sm:text-lg leading-relaxed" style="font-family: 'Open Sans', sans-serif;">
+    Cred în magia simplă: un zâmbet sincer, o îmbrățișare caldă și un moment în care fiecare copil se simte special și iubit. Vizitele mele sunt interactive, pline de emoție, glume, poveste și bucurie adevărată, nu doar o apariție rapidă pentru poze. Fiecare familie merită o clipă de magie autentică, iar eu sunt aici să o aduc.
+   </p>
+
+  </div>
+ </div>
+</section>
+<!-- Services Section -->
+<section id="services" class="bg-gray-100 py-16">
+ <div class="container mx-auto px-4 text-center">
+
+  <h3 class="text-3xl sm:text-4xl font-bold mb-10">Servicii Magice</h3>
+
+  <div class="grid grid-cols-1 md:grid-cols-2 gap-10 max-w-4xl mx-auto">
+
+   <!-- Service 1 -->
+   <div class="bg-white p-6 rounded-xl shadow-lg">
+    <h4 class="text-2xl font-bold mb-4 text-red-600">Vizită la domiciliu</h4>
+    <p class="text-gray-700 mb-4">O atmosferă caldă, emoționantă și plină de magie în casa ta.</p>
+    <button onclick="openModal('modal1')" class="bg-red-600 text-white px-5 py-2 rounded-lg hover:bg-red-700 transition">
+     Rezervă acum
+    </button>
+   </div>
+
+   <!-- Service 2 -->
+   <div class="bg-white p-6 rounded-xl shadow-lg">
+    <h4 class="text-2xl font-bold mb-4 text-red-600">Vizită la grădiniță / școală</h4>
+    <p class="text-gray-700 mb-4">Interacțiune caldă și adaptată copiilor în instituția ta.</p>
+    <button onclick="openModal('modal2')" class="bg-red-600 text-white px-5 py-2 rounded-lg hover:bg-red-700 transition">
+     Rezervă acum
+    </button>
+   </div>
+
+  </div>
+
+ </div>
+</section>
+
+<!-- Benefits Section -->
+<section class="py-16">
+ <div class="container mx-auto px-4 text-center">
+
+  <h3 class="text-3xl sm:text-4xl font-bold mb-10">De ce să mă alegi pe mine?</h3>
+
+  <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+
+   <div class="text-center">
+    <div class="text-5xl mb-3">🎄</div>
+    <h4 class="text-lg font-semibold mb-2">Moș Crăciun din Moldova</h4>
+    <p class="text-gray-600">Moș autentic, inspirat din poveștile și obiceiurile noastre moldovenești.</p>
+   </div>
+
+   <div class="text-center">
+    <div class="text-5xl mb-3">👘</div>
+    <h4 class="text-lg font-semibold mb-2">Costum tradițional</h4>
+    <p class="text-gray-600">Costum tradițional, inspirat din portul popular moldovenesc.</p>
+   </div>
+
+   <div class="text-center">
+    <div class="text-5xl mb-3">🤗</div>
+    <h4 class="text-lg font-semibold mb-2">Abordare caldă</h4>
+    <p class="text-gray-600">Răbdare, blândețe și atenție pentru fiecare copil în parte.</p>
+   </div>
+
+   <div class="text-center">
+    <div class="text-5xl mb-3">📸</div>
+    <h4 class="text-lg font-semibold mb-2">Momente memorabile</h4>
+    <p class="text-gray-600">Fotografii superbe și clipe de neuitat pentru întreaga familie.</p>
+   </div>
+
+  </div>
+
+ </div>
+</section>
+
+<!-- Testimonials Section -->
+<section class="bg-gray-100 py-16">
+ <div class="container mx-auto px-4">
+
+  <h3 class="text-3xl sm:text-4xl font-bold text-center mb-10">
+   Ce spun părinții și organizatorii din Moldova
+  </h3>
+
+  <div class="review-track" id="reviewTrack">
+
+   <div class="bg-white p-6 rounded-xl shadow-lg mx-4 min-w-72">
+    <span class="text-red-500">★★★★★</span>
+    <p class="text-gray-700 my-4">
+     "Copiii au rămas impresionați! Moșul arată ca în poveștile bunicii, cu costum tradițional și vorbe frumoase."
+    </p>
+    <p class="font-semibold">– Ana, Chișinău</p>
+   </div>
+
+   <div class="bg-white p-6 rounded-xl shadow-lg mx-4 min-w-72">
+    <span class="text-red-500">★★★★★</span>
+    <p class="text-gray-700 my-4">
+     "Cel mai frumos Moș pe care l-am avut vreodată la grădiniță!"
+    </p>
+    <p class="font-semibold">– Educatoare, Cricova</p>
+   </div>
+
+   <div class="bg-white p-6 rounded-xl shadow-lg mx-4 min-w-72">
+    <span class="text-red-500">★★★★★</span>
+    <p class="text-gray-700 my-4">
+     "O experiență extraordinară! Moșul nu doar a împărțit cadouri, ci a creat o atmosferă magică și plină de emoție."
+    </p>
+    <p class="font-semibold">– Familia Țurcanu, Durlești</p>
+   </div>
+
+  </div>
+
+ </div>
+</section>
+
+<!-- Contact Section -->
+<section id="contact" class="py-16">
+ <div class="container mx-auto px-4 text-center">
+
+  <h3 class="text-3xl sm:text-4xl font-bold mb-6">Contact</h3>
+  <p class="text-gray-700 mb-6">Pentru întrebări sau detalii suplimentare, mă poți contacta direct:</p>
+
+  <p class="text-xl font-semibold mb-3">📞 +373 60 000 000</p>
+  <p class="text-xl font-semibold mb-3">📩 moscraciun@example.com</p>
+
+ </div>
+</section>
+
+<!-- Calendar Section -->
+<section id="calendar" class="bg-red-600 text-white py-16">
+ <div class="container mx-auto px-4 text-center max-w-xl">
+
+  <h3 class="text-3xl sm:text-4xl font-bold mb-6">Rezervă Vizita</h3>
+
+  <p class="mb-6">Alege data dorită pentru vizita Moșului:</p>
+
+  <iframe src="https://calendar.google.com/calendar/embed?src=YOUR_CALENDAR_LINK"
+          style="border:0"
+          width="100%"
+          height="450"
+          frameborder="0"
+          scrolling="no"></iframe>
+
+ </div>
+</section>
+<!-- Modals -->
+<div id="modal1" class="modal">
+ <div class="modal-content">
+  <span class="close" onclick="closeModal('modal1')">&times;</span>
+  <h3 class="text-xl font-bold mb-4 text-red-600">Rezervă – Vizită la domiciliu</h3>
+  <p class="mb-4 text-gray-700">
+   Pentru rezervări rapide, apasă pe butonul de mai jos și vei fi dus direct la calendar.
+  </p>
+  <a href="#calendar" class="bg-red-600 text-white px-5 py-2 rounded-lg block text-center hover:bg-red-700 transition">
+   Rezervă acum
+  </a>
+ </div>
+</div>
+
+<div id="modal2" class="modal">
+ <div class="modal-content">
+  <span class="close" onclick="closeModal('modal2')">&times;</span>
+  <h3 class="text-xl font-bold mb-4 text-red-600">Rezervă – Vizită la grădiniță / școală</h3>
+  <p class="mb-4 text-gray-700">
+   Pentru instituții, verifică disponibilitatea în calendar și selectează data dorită.
+  </p>
+  <a href="#calendar" class="bg-red-600 text-white px-5 py-2 rounded-lg block text-center hover:bg-red-700 transition">
+   Rezervă acum
+  </a>
+ </div>
+</div>
+
+<script>
+function openModal(modalId) {
+ document.getElementById(modalId).style.display = 'flex';
+}
+
+function closeModal(modalId) {
+ document.getElementById(modalId).style.display = 'none';
+}
+</script>
+
+<footer class="bg-gray-900 text-white py-8 text-center mt-16">
+ <p class="mb-2">© 2024 Moș Crăciun din Moldova</p>
+ <p class="text-gray-400">Magie autentică pentru copii și adulți</p>
+</footer>
+
+</body>
+</html>
